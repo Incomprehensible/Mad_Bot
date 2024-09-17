@@ -1,0 +1,177 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "8bdcaa29-475f-4de6-ac2b-b86b9c11362d")
+	(paper "A4")
+	(lib_symbols)
+	(text "Mad Bot Schematics Tree"
+		(exclude_from_sim no)
+		(at 163.068 23.114 0)
+		(effects
+			(font
+				(size 5 5)
+				(thickness 1.2)
+				(bold yes)
+			)
+		)
+		(uuid "3c208552-7bc6-4c6d-8fb7-da55735e463c")
+	)
+	(sheet
+		(at 96.52 44.45)
+		(size 50.8 21.59)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "5120b27d-14bc-4333-b1bc-a4a9637a24b1")
+		(property "Sheetname" "Motor Drive"
+			(at 96.52 43.7384 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "drive.kicad_sch"
+			(at 96.52 66.6246 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Mad_Bot"
+				(path "/8bdcaa29-475f-4de6-ac2b-b86b9c11362d"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 162.56 44.45)
+		(size 53.34 21.59)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "6dc374af-f04c-4500-ab01-cfd53887145b")
+		(property "Sheetname" "MCU"
+			(at 162.56 43.7384 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "controller.kicad_sch"
+			(at 162.56 66.6246 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Mad_Bot"
+				(path "/8bdcaa29-475f-4de6-ac2b-b86b9c11362d"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 31.75 77.47)
+		(size 46.99 17.78)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "77fb1926-038f-4ada-8a21-604241b8e1c5")
+		(property "Sheetname" "Sensors"
+			(at 31.75 76.7584 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "sensors.kicad_sch"
+			(at 31.75 95.8346 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Mad_Bot"
+				(path "/8bdcaa29-475f-4de6-ac2b-b86b9c11362d"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 31.75 45.72)
+		(size 48.26 21.59)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "a2695317-0484-4915-81a4-69f6dd1bddf6")
+		(property "Sheetname" "Power"
+			(at 31.75 45.0084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "power.kicad_sch"
+			(at 31.75 67.8946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Mad_Bot"
+				(path "/8bdcaa29-475f-4de6-ac2b-b86b9c11362d"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

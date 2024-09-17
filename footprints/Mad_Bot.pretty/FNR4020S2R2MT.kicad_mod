@@ -1,0 +1,173 @@
+(footprint "FNR4020S2R2MT"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "Inductor, cjiang, 2.8A 2.2uH ±20% 3.7A SMD,4x4mm")
+	(tags "Inductor")
+	(property "Reference" "REF**"
+		(at 0 -3.5 0)
+		(layer "F.SilkS")
+		(uuid "10f28044-e5a0-4f2d-95b8-fbc5b8693d41")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "FNR4020S2R2MT"
+		(at 0 3 0)
+		(layer "F.Fab")
+		(uuid "9a25e838-5b2f-4f9c-b6ee-b014e5b545ab")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0.5 0.5 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0b43be57-f4c8-47d5-9abf-5b1aabd52d69")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0.5 0.5 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c9eac7c0-9953-4c19-89ec-e0a0bb313057")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0.5 0.5 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "938e16b9-4286-4da6-b17a-1c6dd4f2ec57")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -2.26 -2.3)
+		(end -2.26 -2.15)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "7b19ff67-13f1-45cd-a96e-71f0bb57314e")
+	)
+	(fp_line
+		(start -2.26 -2.3)
+		(end 2.26 -2.3)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "47296f69-8db6-4d93-a204-86261f4a74fb")
+	)
+	(fp_line
+		(start -2.26 2.3)
+		(end -2.26 2.15)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "188bbf7c-3c80-4d4f-80cb-b19e5df35192")
+	)
+	(fp_line
+		(start -2.26 2.3)
+		(end 2.26 2.3)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "a8bfc31c-c8ba-44aa-8359-0136841ee546")
+	)
+	(fp_line
+		(start 2.26 -2.3)
+		(end 2.26 -2.15)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "39274d74-9157-4973-9430-58f525ab9109")
+	)
+	(fp_line
+		(start 2.26 2.3)
+		(end 2.26 2.15)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "939e9321-3b2a-4b9a-b9e7-578ed55b458f")
+	)
+	(fp_line
+		(start 1.74 -2.3)
+		(end -2.26 -2.3)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "e172dc76-3d58-41e9-8208-e67ecc4e72fb")
+	)
+	(fp_rect
+		(start -2.2 -2)
+		(end 2.2 2)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "762f6fde-f396-41b2-8947-71fc37960db3")
+	)
+	(pad "1" smd rect
+		(at -1.5 0)
+		(size 1.1 3.7)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(thermal_bridge_angle 45)
+		(uuid "cc079ac5-ebc9-495f-bb8e-185fa5bfb897")
+	)
+	(pad "2" smd rect
+		(at 1.5 0)
+		(size 1.1 3.7)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(thermal_bridge_angle 45)
+		(uuid "b768f6cb-fa20-4da5-9684-1bda75c7d88c")
+	)
+	(model "${KICAD8_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_Cenker_CKCS4020.wrl"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
