@@ -1,4 +1,0 @@
-(fp_lib_table
-  (version 7)
-  (lib (name "Mad_Bot")(type "KiCad")(uri "${KIPRJMOD}/Mad_Bot.pretty")(options "")(descr ""))
-)

@@ -125,7 +125,7 @@
 	)
 	(fp_poly
 		(pts
-			(xy -3.55 -6) (xy -2.85 -6) (xy -2.85 -4.13) (xy -3.55 -4.13)
+			(xy -3.55 -6.245) (xy -2.85 -6.245) (xy -2.85 -4.375) (xy -3.55 -4.375)
 		)
 		(stroke
 			(width 0.01)
@@ -137,7 +137,7 @@
 	)
 	(fp_poly
 		(pts
-			(xy -2.75 -6) (xy -2.05 -6) (xy -2.05 -4.13) (xy -2.75 -4.13)
+			(xy -2.75 -6.245) (xy -2.05 -6.245) (xy -2.05 -4.375) (xy -2.75 -4.375)
 		)
 		(stroke
 			(width 0.01)
@@ -149,7 +149,7 @@
 	)
 	(fp_poly
 		(pts
-			(xy -1.95 -6) (xy -1.55 -6) (xy -1.55 -4.13) (xy -1.95 -4.13)
+			(xy -1.95 -6.245) (xy -1.55 -6.245) (xy -1.55 -4.375) (xy -1.95 -4.375)
 		)
 		(stroke
 			(width 0.01)
@@ -161,7 +161,7 @@
 	)
 	(fp_poly
 		(pts
-			(xy -1.45 -6) (xy -1.05 -6) (xy -1.05 -4.13) (xy -1.45 -4.13)
+			(xy -1.45 -6.245) (xy -1.05 -6.245) (xy -1.05 -4.375) (xy -1.45 -4.375)
 		)
 		(stroke
 			(width 0.01)
@@ -173,7 +173,7 @@
 	)
 	(fp_poly
 		(pts
-			(xy -0.95 -6) (xy -0.55 -6) (xy -0.55 -4.13) (xy -0.95 -4.13)
+			(xy -0.95 -6.245) (xy -0.55 -6.245) (xy -0.55 -4.375) (xy -0.95 -4.375)
 		)
 		(stroke
 			(width 0.01)
@@ -185,7 +185,7 @@
 	)
 	(fp_poly
 		(pts
-			(xy -0.45 -6) (xy -0.05 -6) (xy -0.05 -4.13) (xy -0.45 -4.13)
+			(xy -0.45 -6.245) (xy -0.05 -6.245) (xy -0.05 -4.375) (xy -0.45 -4.375)
 		)
 		(stroke
 			(width 0.01)
@@ -197,7 +197,7 @@
 	)
 	(fp_poly
 		(pts
-			(xy 0.05 -6) (xy 0.45 -6) (xy 0.45 -4.13) (xy 0.05 -4.13)
+			(xy 0.05 -6.245) (xy 0.45 -6.245) (xy 0.45 -4.375) (xy 0.05 -4.375)
 		)
 		(stroke
 			(width 0.01)
@@ -209,7 +209,7 @@
 	)
 	(fp_poly
 		(pts
-			(xy 0.55 -6) (xy 0.95 -6) (xy 0.95 -4.13) (xy 0.55 -4.13)
+			(xy 0.55 -6.245) (xy 0.95 -6.245) (xy 0.95 -4.375) (xy 0.55 -4.375)
 		)
 		(stroke
 			(width 0.01)
@@ -221,7 +221,7 @@
 	)
 	(fp_poly
 		(pts
-			(xy 1.05 -6) (xy 1.45 -6) (xy 1.45 -4.13) (xy 1.05 -4.13)
+			(xy 1.05 -6.245) (xy 1.45 -6.245) (xy 1.45 -4.375) (xy 1.05 -4.375)
 		)
 		(stroke
 			(width 0.01)
@@ -233,7 +233,7 @@
 	)
 	(fp_poly
 		(pts
-			(xy 1.55 -6) (xy 1.95 -6) (xy 1.95 -4.13) (xy 1.55 -4.13)
+			(xy 1.55 -6.245) (xy 1.95 -6.245) (xy 1.95 -4.375) (xy 1.55 -4.375)
 		)
 		(stroke
 			(width 0.01)
@@ -245,7 +245,7 @@
 	)
 	(fp_poly
 		(pts
-			(xy 2.05 -6) (xy 2.75 -6) (xy 2.75 -4.13) (xy 2.05 -4.13)
+			(xy 2.05 -6.245) (xy 2.75 -6.245) (xy 2.75 -4.375) (xy 2.05 -4.375)
 		)
 		(stroke
 			(width 0.01)
@@ -257,7 +257,7 @@
 	)
 	(fp_poly
 		(pts
-			(xy 2.85 -6) (xy 3.55 -6) (xy 3.55 -4.13) (xy 2.85 -4.13)
+			(xy 2.85 -6.245) (xy 3.55 -6.245) (xy 3.55 -4.375) (xy 2.85 -4.375)
 		)
 		(stroke
 			(width 0.01)
@@ -394,73 +394,73 @@
 		(uuid "99442d69-363d-401a-9d22-cc55e5601f93")
 	)
 	(pad "A1_B12" smd rect
-		(at -3.2 -5.09)
+		(at -3.2 -5.31)
 		(size 0.6 1.82)
 		(layers "F.Cu" "F.Paste")
 		(uuid "44440882-2677-4cac-854b-993b9759a891")
 	)
 	(pad "A4_B9" smd rect
-		(at -2.4 -5.09)
+		(at -2.4 -5.31)
 		(size 0.6 1.82)
 		(layers "F.Cu" "F.Paste")
 		(uuid "9d220f0d-3de8-4a6a-ae58-82ee1d73c3f6")
 	)
 	(pad "A5" smd rect
-		(at -1.25 -5.09)
+		(at -1.25 -5.31)
 		(size 0.3 1.82)
 		(layers "F.Cu" "F.Paste")
 		(uuid "79578116-20f5-4c5f-b831-169689f5e5fa")
 	)
 	(pad "A6" smd rect
-		(at -0.25 -5.09)
+		(at -0.25 -5.31)
 		(size 0.3 1.82)
 		(layers "F.Cu" "F.Paste")
 		(uuid "eabf8fc7-cfcb-43ab-b839-6ee480174007")
 	)
 	(pad "A7" smd rect
-		(at 0.25 -5.09)
+		(at 0.25 -5.31)
 		(size 0.3 1.82)
 		(layers "F.Cu" "F.Paste")
 		(uuid "438b470d-e24a-40ce-bc2f-e7739c5bfc9e")
 	)
 	(pad "A8" smd rect
-		(at 1.25 -5.09)
+		(at 1.25 -5.31)
 		(size 0.3 1.82)
 		(layers "F.Cu" "F.Paste")
 		(uuid "cafc2287-ee55-47cf-b0de-d987a4be80f5")
 	)
 	(pad "B1_A12" smd rect
-		(at 3.2 -5.09)
+		(at 3.2 -5.31)
 		(size 0.6 1.82)
 		(layers "F.Cu" "F.Paste")
 		(uuid "724ba07e-8046-4d69-acb4-f2a63e0ec5a4")
 	)
 	(pad "B4_A9" smd rect
-		(at 2.4 -5.09)
+		(at 2.4 -5.31)
 		(size 0.6 1.82)
 		(layers "F.Cu" "F.Paste")
 		(uuid "4546f01d-30ce-415a-a759-e78c6c8b1d24")
 	)
 	(pad "B5" smd rect
-		(at 1.75 -5.09)
+		(at 1.75 -5.31)
 		(size 0.3 1.82)
 		(layers "F.Cu" "F.Paste")
 		(uuid "7a895e98-1ff4-4e90-a8bc-62111b12d32a")
 	)
 	(pad "B6" smd rect
-		(at 0.75 -5.09)
+		(at 0.75 -5.31)
 		(size 0.3 1.82)
 		(layers "F.Cu" "F.Paste")
 		(uuid "d1ab3a48-7cfb-4106-92d5-ca6cbccc0c84")
 	)
 	(pad "B7" smd rect
-		(at -0.75 -5.09)
+		(at -0.75 -5.31)
 		(size 0.3 1.82)
 		(layers "F.Cu" "F.Paste")
 		(uuid "e40b6393-71cf-42fa-89df-00368e196714")
 	)
 	(pad "B8" smd rect
-		(at -1.75 -5.09)
+		(at -1.75 -5.31)
 		(size 0.3 1.82)
 		(layers "F.Cu" "F.Paste")
 		(uuid "55b75455-08b0-48a3-939b-b1170a2acc7c")

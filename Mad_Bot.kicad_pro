@@ -121,7 +121,7 @@
         "min_silk_clearance": 0.0,
         "min_text_height": 0.8,
         "min_text_thickness": 0.08,
-        "min_through_hole_diameter": 0.3,
+        "min_through_hole_diameter": 0.2,
         "min_track_width": 0.0,
         "min_via_annular_width": 0.1,
         "min_via_diameter": 0.5,
@@ -469,8 +469,8 @@
       "plot": "",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "",
-      "svg": "",
+      "step": "Mad_Bot.step",
+      "svg": "/home/madnad/pets/Mad_Bot/git/pictures/",
       "vrml": ""
     },
     "page_layout_descr_file": ""
