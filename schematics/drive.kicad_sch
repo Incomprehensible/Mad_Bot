@@ -3806,6 +3806,16 @@
 		)
 		(uuid "fe89423d-7ab1-4103-981b-3bbd0898d552")
 	)
+	(text "M_SLEEP: Pull high for H-bridge normal operation. \nPull low to disable the H-bridge output and enter low-power sleep mode. \nInternal pull-down."
+		(exclude_from_sim no)
+		(at 127.254 158.496 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "118c3b11-ee35-4f78-999d-854f748055bb")
+	)
 	(text "Square-marked shape on encoder as the 1st pin.\nEncoder is facing pins-down.\nConnector on the encoder is through-holes on a 2mm pitch."
 		(exclude_from_sim no)
 		(at 51.308 125.476 0)

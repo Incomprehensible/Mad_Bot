@@ -4818,6 +4818,16 @@
 		)
 		(uuid "88bbb20a-26bd-4662-8719-3598e61551cd")
 	)
+	(text "The Power-On Reset (POR) default state of LEDn output pins is LOW."
+		(exclude_from_sim no)
+		(at 240.792 147.828 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "c7f45f84-331a-48c2-acb0-7a5dd313b344")
+	)
 	(text "RGB Indicator"
 		(exclude_from_sim no)
 		(at 45.72 112.014 0)
@@ -5113,7 +5123,7 @@
 		)
 	)
 	(global_label "SPI_SDO"
-		(shape output)
+		(shape input)
 		(at 125.73 71.12 180)
 		(fields_autoplaced yes)
 		(effects
@@ -5751,7 +5761,7 @@
 		)
 	)
 	(global_label "SPI_SDI"
-		(shape input)
+		(shape output)
 		(at 125.73 73.66 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6016,7 +6026,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "150k"
+		(property "Value" "250k"
 			(at 214.63 100.584 0)
 			(effects
 				(font
@@ -7106,7 +7116,7 @@
 		(dnp no)
 		(uuid "5d97c5ee-80ea-49d1-b6c5-2bdea4a66ad0")
 		(property "Reference" "R27"
-			(at 123.19 35.56 90)
+			(at 123.19 36.83 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7114,7 +7124,7 @@
 			)
 		)
 		(property "Value" "22"
-			(at 123.19 38.1 90)
+			(at 123.19 42.926 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8868,7 +8878,7 @@
 		(dnp no)
 		(uuid "fcdb22ac-5c3e-4473-9fe8-a0a78f7332a0")
 		(property "Reference" "R16"
-			(at 176.53 48.514 90)
+			(at 176.53 49.53 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8876,7 +8886,7 @@
 			)
 		)
 		(property "Value" "22"
-			(at 176.53 51.054 90)
+			(at 176.53 55.626 90)
 			(effects
 				(font
 					(size 1.27 1.27)

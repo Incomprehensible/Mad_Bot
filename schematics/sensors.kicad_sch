@@ -3264,6 +3264,16 @@
 		)
 		(uuid "feed4176-d74c-4d37-8241-47c9248b1bb2")
 	)
+	(text "SDI = MOSI\nSDO = MISO"
+		(exclude_from_sim no)
+		(at 169.418 83.312 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "02b99267-88ae-4fe0-8743-aedd6649b48e")
+	)
 	(text "Camera"
 		(exclude_from_sim no)
 		(at 49.022 93.218 0)
@@ -3499,7 +3509,7 @@
 		)
 	)
 	(global_label "SPI_SDI"
-		(shape output)
+		(shape input)
 		(at 148.59 58.42 180)
 		(fields_autoplaced yes)
 		(effects
@@ -3631,7 +3641,7 @@
 		)
 	)
 	(global_label "SPI_SDO"
-		(shape input)
+		(shape output)
 		(at 189.23 55.88 0)
 		(fields_autoplaced yes)
 		(effects
