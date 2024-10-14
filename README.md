@@ -14,6 +14,7 @@ This is an ongoing project, and the repository is under construction!
 
 ## Fix list for new hardware revisions
 * MEMS microphone footprint flipped
+* Non-fixed Buck-Boost mentioned in the schematics instead of 3.3V fixed
 * 6V regulator doesn't disconnect the load if disabled because of topology - extra switch needed
 * Battery connector is hard to remove - source power switch needed
 * Better (aligned) placement for camera & ToF sensors
