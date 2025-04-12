@@ -20,7 +20,6 @@ Warning: This is an ongoing project, and the repository is under construction!
 * micro-ROS support
 
 ## Operation demo 
- table with three columns with pictures
 | Forward movement | Backward movement | Rotation |
 |:----------------:|:-----------------:|:--------:|
 | ![Forward movement](pictures/forward.gif) | ![Backward movement](pictures/backward.gif) | ![Rotation](pictures/twist.gif) |
