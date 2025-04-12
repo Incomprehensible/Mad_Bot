@@ -7,7 +7,7 @@ Warning: This is an ongoing project, and the repository is under construction!
 * Small PCB-based frame, minimum 3D printed parts
 * ESP32-S3 MCU with vector instructions, acceleration for neural network computing and signal processing workloads
 * Wi-Fi, Bluetooth 5 and BLE connectivity
-* Omni-directional movement
+* Omnidirectional movement
 * Quadrature encoders for precise movement
 * 8 MB PSRAM for image processing
 * 2 Megapixel camera and ToF sensors for running embedded robotics algorithms
@@ -19,8 +19,19 @@ Warning: This is an ongoing project, and the repository is under construction!
 * Integrated MEMS microphone for sound recognition
 * micro-ROS support
 
+## Operation demo 
+ table with three columns with pictures
+| Forward movement | Backward movement | Rotation |
+|:----------------:|:-----------------:|:--------:|
+| ![Forward movement](pictures/forward.gif) | ![Backward movement](pictures/backward.gif) | ![Rotation](pictures/twist.gif) |
+
+### Charging mode
+<details>
+<img src="pictures/charging.jpg" width="40%" height="40%">
+</details>
+
 ## Board layout
-<img src="pictures/Mad_Bot-brd.svg">
+<img src="pictures/Mad_Bot-brd.svg" >
 
 ## Fusion360 design
 <img src="pictures/1.png">
