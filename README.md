@@ -22,11 +22,12 @@ Warning: This is an ongoing project, and the repository is under construction!
 ## Operation demo 
 | Forward movement | Backward movement | Rotation |
 |:----------------:|:-----------------:|:--------:|
-| ![Forward movement](pictures/forward.gif) | ![Backward movement](pictures/backward.gif) | ![Rotation](pictures/twist.gif) |
+| <img src="pictures/forward.gif" height="60%"> | <img src="pictures/backward.gif" height="60%"> | <img src="pictures/twist.gif" height="60%"> |
+<!-- | ![Forward movement](pictures/forward.gif) | ![Backward movement](pictures/backward.gif) | ![Rotation](pictures/twist.gif) | -->
 
 ### Charging mode
 <details>
-<img src="pictures/charging.jpg" width="40%" height="40%">
+<img src="pictures/charging.jpg" width="50%">
 </details>
 
 ## Board layout
