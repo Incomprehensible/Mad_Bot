@@ -45,16 +45,17 @@ Warning: This is an ongoing project, and the repository is under construction!
 - [X] Test load sharing circuit
 - [X] Test basic functionality with motors and ESP32-S3
 - [X] Test Wi-Fi
-- [ ] Motors library and device firmware
+- [ ] **Motors library (in progress)**
 - [X] Encoders testing
-- [ ] Sensors testing:
+- [ ] **Device firmware (in progress)**
+- [ ] **Sensors testing (in progress)**:
   - [ ] Camera
   - [ ] ToF
   - [X] IMU
-  - [ ] MEMS microphone
+  - [ ] *MEMS microphone (requires PCB bug fix)*
 - [ ] Remote controller based on ESP32
 - [ ] PSRAM memory testing
-- [ ] ROS2 integration via micro-ROS
+- [ ] **ROS2 integration via micro-ROS (in progress)**
 - [ ] Web page with control interface and telemetry
 - [ ] Digital twin for simulation in Gazebo and Mujoco
 - [ ] ESPNOW and Mesh experiments
