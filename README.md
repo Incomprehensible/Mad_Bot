@@ -40,26 +40,25 @@ Warning: This is an ongoing project, and the repository is under construction!
 <img src="pictures/4.png">
 
 ## Future work
+- [ ] Add a BOM
 - [X] Test battery charging circuit
 - [X] Test load sharing circuit
 - [X] Test basic functionality with motors and ESP32-S3
 - [X] Test Wi-Fi
-- [ ] Add a BOM
-- [ ] Create a code base
 - [ ] Motors library and device firmware
-- [ ] Web page with control interface and telemetry
-- [ ] Remote control
-- [ ] Encoders testing
+- [X] Encoders testing
 - [ ] Sensors testing:
   - [ ] Camera
   - [ ] ToF
-  - [ ] IMU
+  - [X] IMU
   - [ ] MEMS microphone
+- [ ] Remote controller based on ESP32
 - [ ] PSRAM memory testing
-- [ ] Digital twin for simulation in Gazebo and Mujoco
 - [ ] ROS2 integration via micro-ROS
+- [ ] Web page with control interface and telemetry
+- [ ] Digital twin for simulation in Gazebo and Mujoco
 - [ ] ESPNOW and Mesh experiments
-- [ ] Multi-agent swarm algorithms
+- [ ] Multi-agent algorithms
 - [ ] Computer vision algorithms
 - [ ] Mini SLAM experiments
 
