@@ -41,6 +41,7 @@ Warning: This is an ongoing project, and the repository is under construction!
 
 ## Future work
 - [ ] Add a BOM
+- [ ] Design a carrier extension in Fusion360
 - [X] Test battery charging circuit
 - [X] Test load sharing circuit
 - [X] Test basic functionality with motors and ESP32-S3
@@ -50,7 +51,7 @@ Warning: This is an ongoing project, and the repository is under construction!
 - [ ] **Device firmware (in progress)**
 - [ ] **Sensors testing (in progress)**:
   - [ ] Camera
-  - [ ] ToF
+  - [X] ToF
   - [X] IMU
   - [ ] *MEMS microphone (requires PCB bug fix)*
 - [ ] Remote controller based on ESP32

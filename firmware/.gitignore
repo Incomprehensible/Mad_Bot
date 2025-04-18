@@ -1,0 +1,13 @@
+build/*
+**/build/*
+sdkconfig*
+.vscode
+TODO
+examples
+test
+*.old
+**/tools/ci
+dependencies.lock
+**hash
+cmake-build-debug
+**/MPUdriver/docs
