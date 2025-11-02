@@ -19,12 +19,13 @@
 #include <rcl/rcl.h>
 #include <rcl/error_handling.h>
 #include <std_msgs/msg/int32.h>
+#include <std_msgs/msg/float64_multi_array.h>
 #include <sensor_msgs/msg/imu.h>
+#include <std_msgs/msg/bool.h>
 #include <rclc/rclc.h>
 #include <rclc/executor.h>
 #include <micro_ros_utilities/type_utilities.h>
 #include <micro_ros_utilities/string_utilities.h>
-
 
 #include "MPU.hpp"        // main file, provides the class itself
 #include "mpu/math.hpp"   // math helper for dealing with MPU data
@@ -32,6 +33,7 @@
 
 #include "hardware.h"
 #include "demo.h"
+#include "motors.h"
 
 static const char *TAG = "MadBot";
 
@@ -43,30 +45,69 @@ static const char *TAG = "MadBot";
 #define RCSOFTCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Continuing.\n",__LINE__,(int)temp_rc);}}
 
 rcl_publisher_t publisher;
-rcl_publisher_t publisher_test;
-std_msgs__msg__Int32 msg_test;
+rcl_subscription_t wheels_rpm_subscriber;
+rcl_subscription_t motion_cmd_subscriber;
+std_msgs__msg__Float64MultiArray wheel_w_msg;
+std_msgs__msg__Bool cmd_msg;
 sensor_msgs__msg__Imu msg;
 
 extern MPU_t MPU;
 mpud::float_axes_t accelG;   // accel axes in (g) gravity format
+mpud::float_axes_t gyroDPS;    // gyro axes in (dps) degrees per second format
+extern MotorController motors;
+volatile bool motion_enabled = false;
 
-uint8_t my_buffer[1000];
+double wheel_w_buffer[NUM_WHEELS] = {0};
 
 void IMU_task(void* arg)
 {
     mpud::raw_axes_t accelRaw;   // x, y, z axes as int16
+	mpud::raw_axes_t gyroRaw;    // x, y, z axes as int16
+	int16_t temp = 0;
+	float tempC = 0.0f;
+
     while (1) {
         // Read
-        MPU.acceleration(&accelRaw);  // fetch raw data from the registers
-        // MPU.motion(&accelRaw, &gyroRaw);  // read both in one shot
+        MPU.motion(&accelRaw, &gyroRaw);  // read both in one shot
+		temp = MPU.temperature(&temp);
         // Convert
         accelG = mpud::accelGravity(accelRaw, mpud::ACCEL_FS_4G);
+		gyroDPS = mpud::gyroDegPerSec(gyroRaw, mpud::GYRO_FS_500DPS);
+		tempC = mpud::tempCelsius(temp);
         // Debug
-        printf("accel: [%+6.2f %+6.2f %+6.2f ] (G) \t", accelG.x, accelG.y, accelG.z);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+		// printf("WHO_AM_I = 0x%02X\n", MPU.whoAmI());
+        // printf("accel: [%+6.2f %+6.2f %+6.2f ] (G) \t gyro: [%+7.2f %+7.2f %+7.2f ] (DPS) \t temp: %+6.2f (C)\n", accelG.x, accelG.y, accelG.z, gyroDPS[0], gyroDPS[1], gyroDPS[2], tempC);
+        vTaskDelay(50 / portTICK_PERIOD_MS);
     }
 }
 
+void motion_command_callback(const void * msgin)
+{
+	const std_msgs__msg__Bool* cmd = (const std_msgs__msg__Bool *)msgin;
+
+	if (motion_enabled == cmd->data) // No change
+        return;
+
+    if (!cmd->data) {
+        ESP_ERROR_CHECK(motors.brake());
+    }
+    motion_enabled = cmd->data;
+}
+
+void wheels_rpm_callback(const void * msgin)
+{
+	const std_msgs__msg__Float64MultiArray* cmd = (const std_msgs__msg__Float64MultiArray *)msgin;
+
+    if (!motion_enabled) {// No change 
+    	return;
+	}
+
+	for (size_t i = 0; i < NUM_WHEELS; i++) {
+		printf("Wheel %d cmd: %f rad/s\n", (int)i, wheel_w_buffer[i]);
+		// wheel_w_buffer[i] = cmd->data.data[i];
+	}
+	ESP_ERROR_CHECK(motors.setWheelVelocities(wheel_w_buffer));
+}
 
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 {
@@ -75,12 +116,12 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
         msg.linear_acceleration.x = accelG.x;
         msg.linear_acceleration.y = accelG.y;
         msg.linear_acceleration.z = accelG.z;
+		msg.angular_velocity.x = gyroDPS.x;
+		msg.angular_velocity.y = gyroDPS.y;
+		msg.angular_velocity.z = gyroDPS.z;
 
-		printf("Publishing: %d\n", (int) msg_test.data);
+		// printf("Publishing: %d\n", (int) msg_test.data);
 		RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
-        RCSOFTCHECK(rcl_publish(&publisher_test, &msg_test, NULL));
-
-		msg_test.data++;
 	}
 }
 
@@ -108,11 +149,11 @@ void micro_ros_task(void * arg)
 	RCCHECK(rclc_node_init_default(&node, "esp32_publisher", "", &support));
 	
 	// create publisher
-	RCCHECK(rclc_publisher_init_best_effort(
-		&publisher_test,
-		&node,
-		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
-		"/microROS/int32_publisher"));
+	// RCCHECK(rclc_publisher_init_best_effort(
+	// 	&publisher_test,
+	// 	&node,
+	// 	ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
+	// 	"/microROS/int32_publisher"));
 
     // create publisher
 	RCCHECK(rclc_publisher_init_default(
@@ -120,6 +161,19 @@ void micro_ros_task(void * arg)
 		&node,
     	ROSIDL_GET_MSG_TYPE_SUPPORT(sensor_msgs, msg, Imu),
 		"/microROS/IMU_publisher"));
+
+	 // Create subscribers.
+	RCCHECK(rclc_subscription_init_default(
+		&wheels_rpm_subscriber,
+		&node,
+		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float64MultiArray),
+		"/wheels_controller/commands"));
+	RCCHECK(rclc_subscription_init_default(
+		&motion_cmd_subscriber,
+		&node,
+		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Bool),
+		"/motion_command"));
+
 
 	// create timer,
 	rcl_timer_t timer;
@@ -132,8 +186,10 @@ void micro_ros_task(void * arg)
 
 	// create executor
 	rclc_executor_t executor;
-	RCCHECK(rclc_executor_init(&executor, &support.context, 2, &allocator));
+	RCCHECK(rclc_executor_init(&executor, &support.context, 3, &allocator));
 	RCCHECK(rclc_executor_add_timer(&executor, &timer));
+	RCCHECK(rclc_executor_add_subscription(&executor, &wheels_rpm_subscriber, &wheel_w_msg, &wheels_rpm_callback, ON_NEW_DATA));
+	RCCHECK(rclc_executor_add_subscription(&executor, &motion_cmd_subscriber, &cmd_msg, &motion_command_callback, ON_NEW_DATA));
 
     static micro_ros_utilities_memory_conf_t conf = {0};
     conf.max_string_capacity = 50;
@@ -174,20 +230,45 @@ void micro_ros_task(void * arg)
     msg.linear_acceleration.y = 0.0;
     msg.linear_acceleration.z = 0.0;
 
-	msg_test.data = 0;
+	wheel_w_msg.data.size = NUM_WHEELS;
+	wheel_w_msg.data.capacity = NUM_WHEELS;
+	wheel_w_msg.data.data = wheel_w_buffer;
 
 	while (1) {
 		rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
-		usleep(10000);
+		usleep(100);
 	}
 
 	// free resources
 	RCCHECK(rcl_publisher_fini(&publisher, &node));
-    RCCHECK(rcl_publisher_fini(&publisher_test, &node));
+	RCCHECK(rcl_subscription_fini(&wheels_rpm_subscriber, &node));
+	RCCHECK(rcl_subscription_fini(&motion_cmd_subscriber, &node));
 	RCCHECK(rcl_node_fini(&node));
 
   	vTaskDelete(NULL);
 }
+
+// void synch_time_with_agent()
+// {
+//     // Sync timeout
+//     const int timeout_ms = 5000;
+
+//     // Synchronize time with the agent
+//     RCCHECK(rmw_uros_sync_session(timeout_ms));
+
+//     if (rmw_uros_epoch_synchronized())
+//     {
+//         // Get time in milliseconds or nanoseconds
+//         //base_timestamp_ms = rmw_uros_epoch_millis();
+//         base_timestamp_ns = rmw_uros_epoch_nanos();
+//         base_timestamp_s = base_timestamp_ns / 1000000000;
+//         base_timestamp_ns = base_timestamp_ns % 1000000000; // convert into fractional part
+//     }
+//     baseline_ticks = xTaskGetTickCount();
+//     printf("Baseline ticks: %lld\n", baseline_ticks);
+//     printf("Base timestamp (s): %lld\n", base_timestamp_s);
+//     printf("Base timestamp (fraction) (ns): %lld\n", base_timestamp_ns);
+// }
 
 
 extern "C" void app_main() {
@@ -205,6 +286,13 @@ extern "C" void app_main() {
 
     hardware_init();
 
+	// task_Demo(Command::FORWARD);
+	// vTaskDelay(1000 / portTICK_PERIOD_MS);
+	// task_Demo(Command::BACKWARD);
+	// vTaskDelay(1000 / portTICK_PERIOD_MS);
+	// task_Demo(Command::ROTATE);
+	// vTaskDelay(1000 / portTICK_PERIOD_MS);
+
     // pin micro-ros task in APP_CPU to make PRO_CPU to deal with wifi:
     xTaskCreate(IMU_task,
             "IMU_task",
@@ -220,7 +308,8 @@ extern "C" void app_main() {
             CONFIG_MICRO_ROS_APP_TASK_PRIO,
             NULL);
 
+    esp_log_level_set("wifi", ESP_LOG_NONE);
 	// ESP_ERROR_CHECK(start_http_demo_server());
 
-	ESP_LOGI(TAG, "Command server started");
+	// synch_time_with_agent();
 }

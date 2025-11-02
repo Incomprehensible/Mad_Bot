@@ -143,15 +143,15 @@ void task_rotate(void *ignore)
         printf("No ack, sensor not connected...skip...\n");
     }
 
-    // vTaskDelay(500/portTICK_PERIOD_MS);
+    vTaskDelay(500/portTICK_PERIOD_MS);
 
-    // setPWM(M1_IN2, 4096, 0); // break
-    // setPWM(M2_IN2, 4096, 0); // break
-    // setPWM(M3_IN2, 4096, 0); // break
+    setPWM(M1_IN2, 4096, 0); // break
+    setPWM(M2_IN2, 4096, 0); // break
+    setPWM(M3_IN2, 4096, 0); // break
 
-    // printf("Test M1 breaking...\n");
-    // printf("Test M2 breaking...\n");
-    // printf("Test M3 breaking...\n");
+    printf("Test M1 breaking...\n");
+    printf("Test M2 breaking...\n");
+    printf("Test M3 breaking...\n");
 
     mode = ROTATE;
 

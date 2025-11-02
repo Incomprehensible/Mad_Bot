@@ -1,12 +1,21 @@
 #ifndef HARDWARE_H
 #define HARDWARE_H
 
+#define NUM_WHEELS 3
+#define WHEEL_RADIUS        0.019
+#define ROBOT_RADIUS        0.1
+// 10:1 Micro Metal Gearmotor MP 6V
+#define MOTOR_MIN_RPM -2500.0
+#define MOTOR_MAX_RPM 2500.0
+#define MOTOR_GEAR_RATIO 10.0
+
 #define I2C_MASTER_SCL_IO   16    /*!< gpio number for I2C master clock */
 #define I2C_MASTER_SDA_IO   15    /*!< gpio number for I2C master data  */
 #define I2C_MASTER_FREQ_HZ 400000 //100000     /*!< I2C master clock frequency */
-#define I2C_MASTER_NUM      I2C_NUM_0   /*!< I2C port number for master dev */
+#define I2C_MASTER_NUM     I2C_NUM_0   /*!< I2C port number for master dev */
 #define I2C_MASTER_TX_BUF_DISABLE   0   /*!< I2C master do not need buffer */
 #define I2C_MASTER_RX_BUF_DISABLE   0   /*!< I2C master do not need buffer */
+#define I2C_TIMEOUT                 4000
 
 #define I2C_ADDRESS     0x40    /*!< lave address for PCA9685 */
 
