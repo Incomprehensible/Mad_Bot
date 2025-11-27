@@ -14,6 +14,7 @@
 
 // TODO: check float to int16 conversion
 // check how on/off values are set (I suspect that going lower increases speed?)
+// check each motor by testing different pwm values
 
 static char TAG[] = "MOTORS";
 
@@ -130,7 +131,21 @@ void MotorController::wheel_radps_to_motor_rpm(const double* omega_vec_rad_s, do
 double MotorController::rpm_to_pwm(double rpm)
 {
     // Convert RPM to PWM value
-    double pwm = (fabs(rpm) / max_motor_rpm_) * rpm_to_pwm_scale_;
+    double pwm = rpm_to_pwm_scale_ - ((fabs(rpm) / max_motor_rpm_) * rpm_to_pwm_scale_);
     return pwm;
 }
 
+void MotorController::testMotors()
+{
+    const uint16_t test_pwm[] = {0, 100, 255, 380, 476, 504, 816, 1146, 1520, 1854, 2460, 2755, 3265, 3981};
+    int test_duration_ms = 500;
+    int motor_index = 2; // Test motor 0 (M1)
+    for (size_t i = 0; i < sizeof(test_pwm) / sizeof(test_pwm[0]); i++) {
+        ESP_LOGI(TAG, "Testing motor %d at PWM %d for %d ms", motor_index, test_pwm[i], test_duration_ms);
+        setPWM(motors_[motor_index].in1, 4096, 0);
+        setPWM(motors_[motor_index].in2, 0, test_pwm[i]);
+        vTaskDelay(pdMS_TO_TICKS(test_duration_ms));
+    }
+    brake();
+    ESP_LOGI(TAG, "Motor %d test complete, stopped motor.", motor_index);
+}

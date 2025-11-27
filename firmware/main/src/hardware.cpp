@@ -51,7 +51,7 @@ MotorController motors = MotorController(mA, mB, mC);
 
 static void i2c_example_master_init(void);
 
-int example1(void)
+int vl53l7cx_init_test(void)
 {
 
 	/*********************************/
@@ -491,120 +491,6 @@ static void i2c_example_master_init(void)
         I2C_MASTER_TX_BUF_DISABLE, 0));
 }
 
-// void vl53l7cx_init()
-// {
-//     // Temporarily using VL53L5CX API
-//     uint8_t 				status, loop, isAlive, isReady, i;
-//     VL53L5CX_Configuration 	Dev;			/* Sensor configuration */
-//     VL53L5CX_ResultsData 	Results;		/* Results data from VL53L5CX */
-
-//     Dev.platform.address = VL53L5CX_DEFAULT_I2C_ADDRESS;
-//     Dev.platform.port = i2c_master_port;
-    
-//     status = vl53l5cx_is_alive(&Dev, &isAlive);
-//     if(!isAlive || status)
-//     {
-//         printf("VL53L5CX not detected at requested address\n");
-//         return;
-//     }
-//     else
-//     {
-//         printf("VL53L5CX detected at requested address\n");
-//     }
-
-//     /* (Mandatory) Init VL53L5CX sensor */
-//     status = vl53l5cx_init(&Dev);
-//     if(status)
-//     {
-//         printf("VL53L5CX ULD Loading failed\n");
-//         return;
-//     }
-//     else
-//     {
-//         printf("VL53L5CX ULD Loading succeeded\n");
-//     }
-
-//     vl53l5cx_set_resolution(&Dev, VL53L5CX_RESOLUTION_8X8);
-//     printf("VL53L5CX set to 8x8 resolution\n");
-//       // Using 8x8, min frequency is 1Hz and max is 15Hz
-//     vl53l5cx_set_ranging_frequency_hz(&Dev, 15);
-//     printf("VL53L5CX ranging frequency set to 15Hz\n");
-
-//     printf("VL53L5CX ULD ready ! (Version : %s)\n",
-//            VL53L5CX_API_REVISION);
-//     status = vl53l5cx_start_ranging(&Dev);
-
-//     // TEST
-//     loop = 0;
-//     while (loop < 3)
-//     {
-//         /* Use polling function to know when a new measurement is ready.
-//          * Another way can be to wait for HW interrupt raised on PIN A1
-//          * (INT) when a new measurement is ready */
-
-//         status = vl53l5cx_check_data_ready(&Dev, &isReady);
-
-//         if (isReady)
-//         {
-//             vl53l5cx_get_ranging_data(&Dev, &Results);
-
-//             /* As the sensor is set in 4x4 mode by default, we have a total
-//              * of 16 zones to print. For this example, only the data of first zone are
-//              * print */
-//             printf("Print data no : %3u\n", Dev.streamcount);
-//             for(i = 0; i < 64; i++)
-//             {
-//                 printf("Zone : %3d, Status : %3u, Distance : %4d mm\n",
-//                        i,
-//                        Results.target_status[VL53L5CX_NB_TARGET_PER_ZONE*i],
-//                        Results.distance_mm[VL53L5CX_NB_TARGET_PER_ZONE*i]);
-//             }
-//             printf("\n");
-//             loop++;
-//         }
-
-//         /* Wait a few ms to avoid too high polling (function in platform
-//          * file, not in API) */
-//         WaitMs(&(Dev.platform), 5);
-//     }
-
-//     // VISUALIZE TEST
-//     // Create a buffer to hold the CSV string
-//     // char output_line[512] = {};  // Large enough for 16 distances + commas
-//     // int pos = 0;
-//     // int IMAGE_WIDTH = 8; // default 4x4 grid
-//     // while (true) {
-//     //     status = vl53l5cx_check_data_ready(&Dev, &isReady);
-        
-//     //     if (isReady)
-//     //     {
-//     //         vl53l5cx_get_ranging_data(&Dev, &Results);
-
-//     //         pos = 0; // Reset position for each line
-//     //         // Mimic Arduino's output format (row-by-row, bottom to top, left to right)
-//     //         for (int y = 0; y <= IMAGE_WIDTH * (IMAGE_WIDTH - 1); y += IMAGE_WIDTH)
-//     //         {
-//     //             for (int x = IMAGE_WIDTH - 1; x >= 0; x--)
-//     //             {
-//     //                 int index = x + y;
-//     //                 uint16_t dist = Results.distance_mm[VL53L5CX_NB_TARGET_PER_ZONE * index];
-//     //                 pos += sprintf(output_line + pos, "%d,", dist);
-//     //             }
-//     //         }
-            
-//     //         output_line[pos - 1] = '\n'; // Replace last comma with newline
-//     //         output_line[pos] = '\0';
-
-//     //         // Send over serial
-//     //         printf("%s", output_line);
-//     //     }
-
-//     //     WaitMs(&(Dev.platform), 5);
-//     // }
-
-//     status = vl53l5cx_stop_ranging(&Dev);
-// }
-
 // DEBUG
 void i2c_scanner() {
     printf("Scanning I2C bus...\n");
@@ -645,7 +531,7 @@ void hardware_init()
     gpio_set_direction(GPIO_NUM_44,GPIO_MODE_OUTPUT);
 
     i2c_example_master_init();
-    example1();
+    vl53l7cx_init_test();
 
     set_pca9685_adress(I2C_ADDRESS);
     resetPCA9685();
@@ -654,10 +540,11 @@ void hardware_init()
 
     spi_init();
     i2c_scanner();
-    // vl53l7cx_init();
     pcnt_init();
 
     ESP_ERROR_CHECK(motors.start());
+
+    // motors.testMotors();
 
     printf("Finished hardware setup.\n");
 }

@@ -3,10 +3,10 @@
 
 #define NUM_WHEELS 3
 #define WHEEL_RADIUS        0.019
-#define ROBOT_RADIUS        0.1
+#define ROBOT_RADIUS        0.096896
 // 10:1 Micro Metal Gearmotor MP 6V
-#define MOTOR_MIN_RPM -2500.0
-#define MOTOR_MAX_RPM 2500.0
+#define MOTOR_MIN_RPM -2482.0
+#define MOTOR_MAX_RPM 2482.0
 #define MOTOR_GEAR_RATIO 10.0
 
 #define I2C_MASTER_SCL_IO   16    /*!< gpio number for I2C master clock */

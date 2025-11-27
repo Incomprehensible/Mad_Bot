@@ -18,12 +18,32 @@ Warning: This is an ongoing project, and the repository is under construction!
 * ESPNOW, ESP-WIFI-MESH or ESP-BLE-MESH for communication between several robots
 * Integrated MEMS microphone for sound recognition
 * micro-ROS support
+**Note**: Software support for some features is still in progress.
 
-## Operation demo 
+## Fusion360 design
+| | |
+|--------------|------------|
+| ![](pictures/1.png) | ![](pictures/2.png) |
+| ![](pictures/3.png) | ![](pictures/4.png) |
+
+## URDF model
+<details>
+
+| Robot | Wheel |
+|--------------|------------|
+| ![](pictures/madbot.gif) | ![](pictures/leg.gif) |
+
+</details>
+
+## Operation demo
+<details>
+
 | Forward movement | Backward movement | Rotation |
 |:----------------:|:-----------------:|:--------:|
 | <img src="pictures/forward.gif" height="60%"> | <img src="pictures/backward.gif" height="60%"> | <img src="pictures/twist.gif" height="60%"> |
 <!-- | ![Forward movement](pictures/forward.gif) | ![Backward movement](pictures/backward.gif) | ![Rotation](pictures/twist.gif) | -->
+
+</details>
 
 ### Charging mode
 <details>
@@ -31,22 +51,18 @@ Warning: This is an ongoing project, and the repository is under construction!
 </details>
 
 ## Board layout
+<details>
 <img src="pictures/Mad_Bot-brd.svg" >
-
-## Fusion360 design
-<img src="pictures/1.png">
-<img src="pictures/2.png">
-<img src="pictures/3.png">
-<img src="pictures/4.png">
+</details>
 
 ## Future work
 - [ ] Add a BOM
-- [ ] Design a carrier extension in Fusion360
+- [X] Design a carrier extension in Fusion360
 - [X] Test battery charging circuit
 - [X] Test load sharing circuit
 - [X] Test basic functionality with motors and ESP32-S3
 - [X] Test Wi-Fi
-- [ ] **Motors library (in progress)**
+- [X] Motors library (in progress)
 - [X] Encoders testing
 - [ ] **Device firmware (in progress)**
 - [ ] **Sensors testing (in progress)**:
@@ -56,8 +72,10 @@ Warning: This is an ongoing project, and the repository is under construction!
   - [ ] *MEMS microphone (requires PCB bug fix)*
 - [ ] Remote controller based on ESP32
 - [ ] PSRAM memory testing
-- [ ] **ROS2 integration via micro-ROS (in progress)**
+- [X] **ROS2 integration via micro-ROS (in progress)**
 - [ ] Web page with control interface and telemetry
+- [X] URDF model
+- [X] Joystick control via ROS2
 - [ ] Digital twin for simulation in Gazebo and Mujoco
 - [ ] ESPNOW and Mesh experiments
 - [ ] Multi-agent algorithms
@@ -70,3 +88,19 @@ Warning: This is an ongoing project, and the repository is under construction!
 * 6V regulator doesn't disconnect the load if disabled because of topology - extra switch needed
 * Battery connector is hard to remove - source power switch needed
 * Better (aligned) placement for camera & ToF sensors
+
+## Software Troubleshooting
+
+### micro-ROS build issues
+If you encounter issue like [this](https://github.com/micro-ROS/micro_ros_espidf_component/issues/251) building micro-ROS for the ESP32-S3 platform, edit [`libmicroros.mk`](https://github.com/micro-ROS/micro_ros_espidf_component/blob/humble/libmicroros.mk) file at line 110 to include `esp32s3` as follows:
+
+```makefile
+ifeq ($(IDF_TARGET),$(filter $(IDF_TARGET),esp32s2 esp32c3 esp32c6 esp32s3))
+```
+
+## Acknowledgements
+This project takes inspiration from the following open-source projects:
+* https://github.com/YePeOn7/ros2_omni_robot_sim (omnidirectional drive kinematics)
+* https://github.com/twistx77/V53L7CX-Library.git (ToF sensor library)
+* https://github.com/natanaeljr/esp32-mpu-driver (IMU driver)
+* Jonas Scharpf code pf the PCA9685 driver (motor PWM driver)

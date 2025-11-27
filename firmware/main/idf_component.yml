@@ -1,6 +1,4 @@
 dependencies:
   vl53l7cx:
     git: https://github.com/twistx77/V53L7CX-Library.git
-  # rjrp44/vl53l5cx: "*"
-  # protocol_examples_common:
-  #   path: ${IDF_PATH}/examples/common_components/protocol_examples_common
+  
