@@ -18,6 +18,7 @@ Warning: This is an ongoing project, and the repository is under construction!
 * ESPNOW, ESP-WIFI-MESH or ESP-BLE-MESH for communication between several robots
 * Integrated MEMS microphone for sound recognition
 * micro-ROS support
+
 **Note**: Software support for some features is still in progress.
 
 ## Fusion360 design
